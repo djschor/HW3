@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+The tweet text with the most non-whitespace characters is: <br><br>
+<i>{{ tweet_info['text'] }}</i><br>
+posted by <b>@{{ tweet_info['username'] }}</b>
+({{ tweet_info['display_name'] }})<br>
+
+{% if not tweet_info %}
+    There is not a longest tweet to show.
+{% endif %}
+
+{% endblock %}
