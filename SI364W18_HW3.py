@@ -178,8 +178,8 @@ def index():
         t = Tweet.query.filter_by(text = text).first()
         d = Tweet.query.filter_by(id = u.id).first()
         y = User.query.filter_by(username = username).first()
-        if t and user: 
-           print("Tweet already exists")
+        if t and user:
+           flash("Tweet already exists")
            return redirect(url_for('see_all_tweets'))
     ## Assuming we got past that redirect,
     ## Create a new tweet object with the text and user id
@@ -189,6 +189,7 @@ def index():
         t_obj = Tweet(text = text, user_id = y.id)
         db.session.add(t_obj)
         db.session.commit()
+        return redirect(url_for('index'))
     #return redirect(url_for('index'))
     # PROVIDED: If the form did NOT validate / was not submitted
     errors = [v for v in form.errors.values()]
